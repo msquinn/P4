@@ -17,24 +17,26 @@ public class AsTheCrowFlies {
 
 		String fileName = scnr.nextLine();
 		File file = new File(fileName);
+		Scanner in = null;
 		try{
-			int count = 0;
-			scnr = new Scanner(file);
-			while(scnr.hasNextLine()){
-				scnr.useDelimiter(",");
-				String state = scnr.next();
-				String city = scnr.next();
-				Double latitude = scnr.nextDouble();
-				Double longitude = scnr.nextDouble();
-				City city1 = new City (state,city,latitude,longitude);
-				availableCities.add(city1);
-				count++;
-			}
-			System.out.println(count+" cities added");
+			in = new Scanner(file);
+			in.useDelimiter(",");
 		}catch(FileNotFoundException e){
 			System.out.println("Enter Valid File Name");
+			return;
 		}
-
+		
+		int count = 0;
+		while(in.hasNext()){
+			String state = in.next();
+			String cityName = in.next();
+			Double latitude = in.nextDouble();
+			Double longitude = in.nextDouble();
+			City city = new City (state,cityName,latitude,longitude);
+			availableCities.add(city);
+			count++;
+		}
+		System.out.println(count+" cities added");
 	}
 
 	private static void menu() {
@@ -51,7 +53,7 @@ public class AsTheCrowFlies {
 			switch(input){
 			case "1":
 				results = 1;
-				System.out.println("1");
+				optionOne();
 				break;
 			case"2":
 				results = 2;
