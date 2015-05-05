@@ -2,7 +2,8 @@ import java.util.*;
 import java.io.*;
 
 public class AsTheCrowFlies {
-	private static ArrayList <City> availableCities = new ArrayList<City>();
+	private static ArrayList<City> availableCities = new ArrayList<City>();
+	private static Trip currTrip = new Trip();
 	private static Scanner scnr = new Scanner(System.in);
 
 	//Main Method
@@ -62,8 +63,43 @@ public class AsTheCrowFlies {
 	 * Main menu option three.
 	 */
 	public static void optionThree(){
-		//TODO
+		System.out.println("There are " + availableCities.size() + " cities to choose from.");
+		if(currTrip.size() < 1){
+			System.out.println("New trip created, needs at least two cities.");
+
+			int i = 0;
+			boolean run = true;
+			while(i<availableCities.size() && run){
+				System.out.print("Enter next city name (or enter to end): ");
+				String cityName = scnr.nextLine().toUpperCase();
+				if(!cityName.equals("")){
+					City temp = findCity(cityName);
+					if(temp != null){
+						currTrip.addCity(temp);
+					} else{
+						//TODO Error Handling if city is not found
+					}
+				} else {
+					run = false;
+				}
+			}
+			System.out.println(currTrip);
+		}
 		return;
+	}
+
+	/**
+	 * Find city by its name.
+	 * @param name Name of city.
+	 * @return City null if non found.
+	 */
+	private static City findCity(String name){
+		for(int i=0; i<availableCities.size(); i++){
+			if(availableCities.get(i).getName().equals(name)){
+				return availableCities.get(i);
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -103,11 +139,11 @@ public class AsTheCrowFlies {
 			System.out.println("Print writer error");
 			return;
 		}
-		
+
 		for(int i=0; i<availableCities.size(); i++){
 			writer.println(availableCities.get(i));
 		}
-		
+
 		writer.close();
 		return;
 	}

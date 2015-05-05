@@ -20,6 +20,14 @@ public class Trip {
 	public Trip(){
 		this.cities = new ArrayList<City>();
 	}
+	
+	/**
+	 * Get size of trip
+	 * @return int Size of trip
+	 */
+	public int size(){
+		return this.cities.size();
+	}
 
 	/**
 	 * Adds city to list.
@@ -66,7 +74,7 @@ public class Trip {
 
 		s += "There are " + this.cities.size() + " cities in this trip.\n";
 
-		for(int i=0; i<this.cities.size()-1; i++){
+		for(int i=0; i<this.cities.size(); i++){
 			s += cities.get(i).getName().toUpperCase() + " to ";
 			s += cities.get(i+1).getName().toUpperCase() + " as the crow flies is about ";
 			int distance = getDistance(this.cities.get(i), this.cities.get(i+1));
