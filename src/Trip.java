@@ -36,6 +36,13 @@ public class Trip {
 	public void addCity(City city){
 		this.cities.add(city);
 	}
+	
+	/**
+	 * Empties cities.
+	 */
+	public void empty(){
+		this.cities.removeAll(cities);
+	}
 
 	/**
 	 * Returns distance between two cities in meters.
@@ -74,7 +81,7 @@ public class Trip {
 
 		s += "There are " + this.cities.size() + " cities in this trip.\n";
 
-		for(int i=0; i<this.cities.size(); i++){
+		for(int i=0; i<this.cities.size()-1; i++){
 			s += cities.get(i).getName().toUpperCase() + " to ";
 			s += cities.get(i+1).getName().toUpperCase() + " as the crow flies is about ";
 			int distance = getDistance(this.cities.get(i), this.cities.get(i+1));

@@ -9,8 +9,8 @@ public class City {
 
 	//constructor
 	public City(String state, String name, double latitude, double longitude ){
-		this.state = state;
-		this.name = name;
+		this.state = state.toUpperCase();
+		this.name = name.toUpperCase();
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
@@ -32,7 +32,7 @@ public class City {
 	
 	@Override 
 	public String toString(){
-		return state.toUpperCase() + ","+ name.toUpperCase() + ","+
+		return state + ","+ name + ","+
 				latitude + ","+ longitude;
 	}
 }
